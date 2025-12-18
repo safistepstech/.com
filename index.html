@@ -413,23 +413,23 @@ function handleContact(e) {
     return;
   }
 
-  fetch("https://script.google.com/macros/s/AKfycbwZ9kX2AbCDeF1234567890/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbzFpJGoa47xQMptATsyQfSYlbRw-fnbyCrjqI46JmpEK4XkgUWFUjLHfCAEoVGN7PvB/exec", {
     method: "POST",
     mode: "no-cors",
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, email, message })
   });
 
-  alert("Thank you! Your message has been sent.");
+  alert("✅ Your message has been sent!");
   document.getElementById("contactForm").reset();
 }
 </script>
 
 
+
 </body>
         </html>
+
 
 
 
