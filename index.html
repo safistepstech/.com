@@ -322,15 +322,7 @@ Contact Us
       window.open('https://api.whatsapp.com/send?phone=' + phone + '&text=' + text, '_blank');
     }
 
-    // Contact form demo
-    function handleContact(e){
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      if(!name || !email){ alert('Please fill required fields'); return; }
-      alert('Thanks ' + name + '! We will contact you soon.\\n(Email: ' + email + ')');
-      e.target.reset();
-    }
+   
 
     // Gallery modal
     document.getElementById('gallery').addEventListener('click', function(evt){
@@ -438,6 +430,7 @@ function handleContact(e) {
 
 </body>
         </html>
+
 
 
 
