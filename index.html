@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -307,11 +306,89 @@ Contact Us
 
   <!-- IMAGE MODAL -->
   <div id="modal" role="dialog" aria-modal="true"><img id="modalImg" alt="zoom"></div>
+<footer style="text-align:center; padding:18px 10px; margin-top:28px; font-weight:600;">
 
-  <footer style="text-align:center; padding:18px 10px; color:#0000ff; font-weight:600; margin-top:28px;">
-  © 2025 Steps Tech Advertisement • GST:33AEWFS6924H1ZH
+  <style>
+    .social-wrap {
+      display:flex;
+      justify-content:center;
+      gap:16px;
+      margin-bottom:14px;
+    }
+
+    .social-btn {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 18px;
+      border-radius:40px;
+      background:#f4f6ff;
+      color:#0000ff;
+      text-decoration:none;
+      font-size:15px;
+      transition:all 0.3s ease;
+    }
+
+    .social-btn span.icon {
+      width:36px;
+      height:36px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#ffffff;
+      border-radius:50%;
+      transition:transform 0.3s ease, background 0.3s ease;
+    }
+
+    .social-btn img {
+      width:18px;
+      height:18px;
+    }
+
+    .social-btn:hover {
+      background:#0000ff;
+      color:#ffffff;
+    }
+
+    .social-btn:hover span.icon {
+      transform:scale(1.15);
+      background:#e6e9ff;
+    }
+
+    /* 📱 Mobile stacked layout */
+    @media (max-width: 600px) {
+      .social-wrap {
+        flex-direction:column;
+        align-items:center;
+      }
+      .social-btn {
+        width:85%;
+        justify-content:center;
+      }
+    }
+  </style>
+
+  <div class="social-wrap">
+    <a class="social-btn" href="https://www.facebook.com/profile.php?id=61585041031293" target="_blank">
+      <span class="icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+      </span>
+      Facebook
+    </a>
+
+    <a class="social-btn" href="https://www.instagram.com/stepstech5377/" target="_blank">
+      <span class="icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram">
+      </span>
+      Instagram
+    </a>
+  </div>
+
+  <div style="color:#0000ff;">
+    © 2025 Steps Tech Advertisement • GST:33AEWFS6924H1ZH
+  </div>
+
 </footer>
-
 
   <script>
     // simple helpers
@@ -323,7 +400,6 @@ Contact Us
     }
 
    
-
     // Gallery modal
     document.getElementById('gallery').addEventListener('click', function(evt){
       const img = evt.target.closest('img'); if(!img) return;
@@ -391,16 +467,7 @@ Contact Us
       if(e.key === 'Escape'){ document.getElementById('modal').style.display = 'none'; document.getElementById('chatWin').style.display = 'none'; }
     });
   </script>
-          <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KQK5B94ETD"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KQK5B94ETD');
-</script>
-         <script>
 function handleContact(e) {
   e.preventDefault();
 
@@ -413,24 +480,27 @@ function handleContact(e) {
     return;
   }
 
-  fetch("https://script.google.com/macros/s/AKfycbzFpJGoa47xQMptATsyQfSYlbRw-fnbyCrjqI46JmpEK4XkgUWFUjLHfCAEoVGN7PvB/exec", {
-    method: "POST",
-    mode: "no-cors",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, email, message })
-  });
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("email", email);
+  formData.append("message", message);
 
-  alert("✅ Your message has been sent!");
-  document.getElementById("contactForm").reset();
+  fetch("https://script.google.com/macros/s/AKfycbwmLaV66a7jMU2nnhlkwBuoQCw7HoA8ExSe3G-mm-DICV_lNfV96KZdKi9iNLAMNNM5/exec", {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.text())
+  .then(txt => {
+    alert("Message sent successfully ✅");
+    document.getElementById("contactForm").reset();
+  })
+  .catch(err => {
+    alert("Error sending message ❌");
+    console.error(err);
+  });
 }
 </script>
 
 
-
 </body>
-        </html>
-
-
-
-
-
+</html>
